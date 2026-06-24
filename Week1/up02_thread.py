@@ -24,7 +24,7 @@ def main():
     queue = ['A', 'B', 'C']
     start_time = time()
 
-    print(f"{ctime()} | === Multi-threaded Coffee Machine ===")
+    print(f"{ctime()} | === Multi-threading Coffee Machine ===")
 
     threads = []
     for customer in queue:
