@@ -29,7 +29,7 @@ async def main():
     for customer in customers:
         await greet_diners(customer)
     
-    print(f"{ctime()} --- All customers greeted, FORKING into independent tasks for each customer ...")
+    print(f"\n{ctime()} --- All customers greeted, FORKING into independent tasks for each customer ...\n")
 
     tasks = []
 
