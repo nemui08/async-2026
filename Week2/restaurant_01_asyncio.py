@@ -1,5 +1,4 @@
 import asyncio
-import threading
 from time import ctime,time
 
 async def greet_diners(customer):
