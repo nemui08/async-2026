@@ -5,11 +5,10 @@ from time import ctime
 
 async def deliver_task(package_id, duration):
     try:
-        print(f"{ctime()} Courier started delivering package {package_id}...")
         await asyncio.sleep(duration)
-        print(f"{ctime()} Package {package_id}: Successfully delivered!")
+        return f"Package {package_id}: Delivered!"
     except asyncio.CancelledError:
-        print(f"{ctime()} Package {package_id}: Delivery Canceled! Returning package to warehouse...")
+        print(f"{ctime()} Package {package_id}: Delivery Canceled! Returning package to warehouse.")
         raise  
 
 async def main():
