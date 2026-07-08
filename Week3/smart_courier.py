@@ -4,29 +4,29 @@ import asyncio
 from time import ctime
 
 async def deliver_task(package_id, duration):
+    print(f"{ctime()} Courier started delivering {package_id} ...")
     try:
         await asyncio.sleep(duration)
         return f"Package {package_id}: Delivered!"
     except asyncio.CancelledError:
-        print(f"{ctime()} Package {package_id}: Delivery Canceled! Returning package to warehouse.")
+        print(f"{ctime()} Delivery Canceled! Returning package to warehouse.")
         raise  
 
 async def main():
-    task = asyncio.create_task(deliver_task("P001", 5))
-    task.set_name("DeliveryTask-P001")
+    task = asyncio.create_task(deliver_task("PKG-001", 5), name="Express-Courier")
 
     await asyncio.sleep(2)  # Let the delivery task run for a bit
 
-    print(f"{ctime()} Checking task 'Express-Courier'.Is it done? {task.cancelled()}")
+    print(f"{ctime()} Checking task '{task.get_name()}'. Is it done? {task.done()}")
 
     if not task.done():
         print(f"{ctime()} Package {task.get_name()}: Taking too long! canceling the task...")
         task.cancel()  # Trigger cancellation
     
-    try:
-        await task  # Await the task to handle cancellation properly
-    except asyncio.CancelledError:
-        print(f"{ctime()} Final verify: Is task officially canceled? {task.cancelled()}")
+        try:
+            await task  # Await the task to handle cancellation properly
+        except asyncio.CancelledError:
+                print(f"{ctime()} Final verify: Is task officially canceled? {task.cancelled()}")
     
 if __name__ == "__main__":
     asyncio.run(main())
