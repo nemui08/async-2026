@@ -3,6 +3,7 @@ import httpx
 from time import ctime
 
 async def fetch_stock_price(server_name: str):
+
     url = f"http://127.0.0.1:8088/price/{server_name}"
     
     async with httpx.AsyncClient() as client:
@@ -16,8 +17,6 @@ async def main():
         asyncio.create_task(fetch_stock_price("Beta")),
         asyncio.create_task(fetch_stock_price("Gamma"))
     ]
-
-    print(f"{ctime()} Starting race...")
     
     done, pending = await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED)
 
@@ -34,7 +33,6 @@ async def main():
             except asyncio.CancelledError:
                 pass
 
-        print(f"{ctime()} Cleanup complete.")
 
 if __name__ == "__main__":
     asyncio.run(main())
