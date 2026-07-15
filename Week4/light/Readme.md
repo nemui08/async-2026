@@ -3,7 +3,7 @@
 This specification documents the API endpoints and WebSocket channels for the Smart Lab Lighting System. The system allows multiple students to independently control their own set of 4 simulated lab lights to test asynchronous programming and concurrency concepts.
 
 ## 🛠️ Base URL
-* **HTTP:** `http://127.0.0.1:8000`
+* **HTTP:** `http://172.16.2.117:8088`
 * **WebSockets:** `ws://127.0.0.1:8000`
 
 ---
